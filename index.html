@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Никита & Дарья | Свадебное приглашение</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background: #faf7f5;
+    color: #333;
+}
+section {
+    padding: 50px 20px;
+    max-width: 900px;
+    margin: auto;
+}
+h1, h2 {
+    text-align: center;
+}
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+    url('https://images.unsplash.com/photo-1529634597503-139d3726fed0');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 120px 20px;
+}
+.hero h1 {
+    font-size: 48px;
+}
+.hero p {
+    font-size: 20px;
+}
+.timer {
+    font-size: 24px;
+    margin-top: 15px;
+}
+.schedule div {
+    background: white;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 12px;
+}
+.colors {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+.color {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+iframe {
+    border-radius: 15px;
+}
+.footer {
+    text-align: center;
+    font-style: italic;
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+    <h1>Никита & Дарья</h1>
+    <p>27 июня</p>
+    <div class="timer" id="timer"></div>
+    <p id="guestName" style="font-size:22px; margin-top:25px;"></p>
+</section>
+
+<section>
+    <h2>Программа дня</h2>
+    <div class="schedule">
+        <div>🕘 <b>9:00</b> — Сбор гостей</div>
+        <div>💍 <b>9:30</b> — Церемония регистрации<br>ул. Сухэ-Батора, 15</div>
+        <div>📸 <b>10:30</b> — Фотосессия</div>
+        <div>🍽 <b>16:00</b> — Свадебный банкет<br>Научный городок, ул. Весенняя, 81</div>
+    </div>
+</section>
+
+<section>
+    <h2>Дресс-код</h2>
+    <p style="text-align:center">
+        Нам будет очень приятно, если вы поддержите цветовую гамму нашего праздника 🤍
+    </p>
+    <div class="colors">
+        <div class="color" style="background:#e8d8c3"></div>
+        <div class="color" style="background:#c2a07a"></div>
+        <div class="color" style="background:#8f7a66"></div>
+        <div class="color" style="background:#f5f0ea"></div>
+    </div>
+</section>
+
+<section>
+    <h2>Второй день 🎉</h2>
+    <p style="text-align:center">
+        На следующий день продолжаем праздник в тёплой, неформальной обстановке.<br>
+        <b>Вход со своим пивом 🍺</b>
+    </p>
+</section>
+
+<section>
+    <h2>Подтвердите присутствие</h2>
+    <p style="text-align:center">
+        Пожалуйста, заполните анкету — это поможет нам сделать праздник ещё комфортнее для вас 🤍
+    </p>
+
+    <!-- 🔽 ВСТАВИ СЮДА СВОЮ GOOGLE FORM -->
+    <iframe 
+        src="ВСТАВЬ_ССЫЛКУ_ИЗ_GOOGLE_FORMS"
+        width="100%" 
+        height="750">
+    </iframe>
+</section>
+
+<section class="footer">
+    <p>
+        Мы будем счастливы разделить этот день с вами 🤍<br>
+        Спасибо, что вы рядом и делаете нашу жизнь по-настоящему особенной.
+    </p>
+</section>
+
+<script>
+// Таймер
+const weddingDate = new Date("2026-06-27T09:00:00").getTime();
+setInterval(() => {
+    const now = new Date().getTime();
+    const diff = weddingDate - now;
+    if (diff < 0) return;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    document.getElementById("timer").innerHTML =
+        `До свадьбы осталось: ${days} дн. ${hours} ч. ${minutes} мин.`;
+}, 1000);
+
+// Именное приветствие
+const params = new URLSearchParams(window.location.search);
+const name = params.get("name");
+if (name) {
+  document.getElementById("guestName").innerText =
+    `Дорогой(ая) ${name}, будем счастливы видеть вас на нашем празднике 🤍`;
+}
+</script>
+
+</body>
+</html>
